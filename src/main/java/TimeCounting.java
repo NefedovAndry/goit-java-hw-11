@@ -10,42 +10,54 @@
 import static java.lang.Thread.sleep;
 
 public class TimeCounting {
-    static int time = 0;
 
     public static void main(String[] args) {
+        Timer timer = new Timer();
         new Thread(() -> {
-            int count = 0;
+            int count = 1;
             while (true) {
-                setTime(count++);
                 try {
                     sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                System.out.println(count + " seconds passed");
+                timer.setTime(count);
+                count++;
             }
         }, "Counter").start();
 
         new Thread(() -> {
+            int time = 0;
             while (true) {
-                if (getTime() % 5 == 0) {
+                time = timer.getTime();
+                if (time != 0 && time % 5 == 0) {
                     System.out.println("5 seconds left");
                 }
+            }
+        }, "Messenger").start();
+    }
+
+    static class Timer {
+        int time = 0;
+        boolean isDelivered = false;
+
+        public synchronized void setTime(int time) {
+            this.time = time;
+            isDelivered = false;
+            notify();
+        }
+
+        public synchronized int getTime() {
+            while (isDelivered) {
                 try {
                     wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-        }, "Messenger").start();
-
-    }
-
-    public static synchronized void setTime(int time) {
-        TimeCounting.time = time;
-        notify();
-    }
-
-    public static synchronized int getTime() {
-        return time;
+            isDelivered = true;
+            return time;
+        }
     }
 }
