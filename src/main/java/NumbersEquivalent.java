@@ -81,7 +81,7 @@ class NumberToString {
     }
 
     public void number() throws InterruptedException {
-        this.result = new StringBuilder(bufferValue.toString());
+        this.result = new StringBuilder(bufferValue);
         isManaged = false;
         isFizzBuzz = false;
         isFizz = false;
