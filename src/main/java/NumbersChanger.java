@@ -20,9 +20,9 @@ public class NumbersChanger {
 }
 
 class NumberToString1 {
-    Integer value;
-    Integer bufferValue;
-    StringBuilder result;
+    private final Integer value;
+    private Integer bufferValue;
+    private StringBuilder result;
 
     public NumberToString1(int value) {
         this.value = value;
@@ -30,7 +30,7 @@ class NumberToString1 {
         changer();
     }
 
-    public void changer() {
+    private void changer() {
         for (int i = 0; i < value; i++) {
             this.result = new StringBuilder(bufferValue.toString());
             fizz();
