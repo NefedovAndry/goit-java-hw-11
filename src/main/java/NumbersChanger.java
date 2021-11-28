@@ -31,7 +31,7 @@ class NumberToString1 {
     }
 
     private void changer() {
-        for (int i = 0; i < value; i++) {
+        while (bufferValue <= value) {
             this.result = new StringBuilder(bufferValue.toString());
             fizz();
             buzz();
