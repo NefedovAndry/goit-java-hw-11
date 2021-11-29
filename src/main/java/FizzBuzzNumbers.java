@@ -20,7 +20,7 @@ public class FizzBuzzNumbers {
 
         MyIterator myIterator = new MyIterator(16);
 
-        Thread threadA = new Thread(() -> {
+        new Thread(() -> {
             while (myIterator.isInWork()) {
                 try {
                     myIterator.fizz();
@@ -28,10 +28,9 @@ public class FizzBuzzNumbers {
                     e.printStackTrace();
                 }
             }
-        }, "A");
-        threadA.start();
+        }, "A").start();
 
-        Thread threadB = new Thread(() -> {
+        new Thread(() -> {
             while (myIterator.isInWork()) {
                 try {
                     myIterator.buzz();
@@ -39,10 +38,9 @@ public class FizzBuzzNumbers {
                     e.printStackTrace();
                 }
             }
-        }, "B");
-        threadB.start();
+        }, "B").start();
 
-        Thread threadC = new Thread(() -> {
+        new Thread(() -> {
             while (myIterator.isInWork()) {
                 try {
                     myIterator.fizzbuzz();
@@ -50,10 +48,9 @@ public class FizzBuzzNumbers {
                     e.printStackTrace();
                 }
             }
-        }, "C");
-        threadC.start();
+        }, "C").start();
 
-        Thread threadD = new Thread(() -> {
+        new Thread(() -> {
             while (myIterator.isInWork()) {
                 try {
                     myIterator.number();
@@ -61,8 +58,7 @@ public class FizzBuzzNumbers {
                     e.printStackTrace();
                 }
             }
-        }, "D");
-        threadD.start();
+        }, "D").start();
 
     }
 
