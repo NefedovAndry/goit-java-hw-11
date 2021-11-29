@@ -13,7 +13,7 @@ package numbers_equivalent;/*
 
 import java.util.Objects;
 
-public class NumbersChanger {
+public class NumbersEquivalentInSinglethreading {
     public static void main(String[] args) {
         new NumberToString1(15);
     }
